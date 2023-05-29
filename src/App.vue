@@ -1,4 +1,5 @@
 <script>
+
 import AppMain from './components/AppMain.vue'
 
 export default {
@@ -6,6 +7,7 @@ export default {
     return{
       
     }
+
   },
 
   components: {
