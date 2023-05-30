@@ -1,1 +1,56 @@
+$danger: #e44d26;
+$primary: #008fd5;
+$secondary: #f99d34;
+
 @import "bootstrap/scss/bootstrap";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.router-link{
+    text-decoration: none;
+    color: unset;
+}
+
+ul{
+    margin-bottom: 0;
+}
+
+li{
+    list-style-type: none;
+}
+
+.nav_0{
+
+    border-bottom: 2px solid #e44d26;
+}
+
+.nav_1{
+
+    border-bottom: 2px solid #008fd5;
+}
+
+.nav_2{
+
+    border-bottom: 2px solid #f99d34;
+}
+
+.text_0{
+
+    color:#e44d26;
+}
+
+.text_1{
+
+    color:#008fd5;
+}
+
+.text_2{
+
+    color:#f99d34;
+}
+
+// Assets
