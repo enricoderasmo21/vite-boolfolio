@@ -11,6 +11,48 @@ export default {
     }
 
   },
+
+  methods: {
+
+    activeHome(){
+
+        if(this.$route.name == 'home' && this.store.activeIndex == 0){
+
+            return 'active_0';
+
+        }
+        
+        if(this.$route.name == 'home' && this.store.activeIndex == 1){
+
+            return 'active_1';
+            
+        }
+        
+        if(this.$route.name == 'home' && this.store.activeIndex == 2){
+
+            return 'active_2';
+        }
+    },
+
+    activeProject(){
+        
+        if(this.$route.name == 'projects.index' && this.store.activeIndex == 0){
+            
+            return 'active_0';
+        }
+            
+        
+        if(this.$route.name == 'projects.index' && this.store.activeIndex == 1){
+            
+            return 'active_1';
+        }
+    
+        if(this.$route.name == 'projects.index' && this.store.activeIndex == 2){
+        
+            return 'active_2';
+        }
+    }
+  }
 }
 
 </script>
@@ -33,7 +75,12 @@ export default {
                 <div class="link-container">
                     <ul>
                         <li>
-                            <router-link class="router-link link" :to="{name: 'projects.index'}">
+                            <router-link class="router-link link" :class="activeHome()" :to="{name: 'home'}">
+                                Home
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link class="router-link link" :class="activeProject()" :to="{name: 'projects.index'}">
                                 Progetti
                             </router-link>
                         </li>
@@ -52,7 +99,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 3;
+    z-index: 5;
 
     padding: 20px 40px;
 
@@ -92,7 +139,6 @@ export default {
                     font-family: 'Ubuntu', sans-serif;
                     color: white;
                 }
-        
             }
         }
     }

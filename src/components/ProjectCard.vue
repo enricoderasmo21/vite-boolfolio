@@ -8,6 +8,8 @@ export default {
       store,
 
       baseUrl: 'http://127.0.0.1:8000/',
+
+      viewBtn: false,
     }
 
   },
@@ -18,17 +20,6 @@ export default {
   },
 
   computed: {
-
-    shortContent() {
-
-        if(this.project.description.length > 50) {
-
-            return this.project.description.substring(0, 50) + '...';
-        } else {
-
-            return this.project.description
-        }
-    },
 
     image() {
 
@@ -49,13 +40,18 @@ export default {
 
 <template>
     
-    <div class="card">
+    <div class="card" @mouseover="viewBtn = true" @mouseleave="viewBtn = false">
       <img :src="image" class="card-img-top" alt="project-image">
       <div class="card-body">
-        <h5 class="card-title" :class="this.store.activeIndex == 0 ? 'text_0' : '', this.store.activeIndex == 1 ? 'text_1' : '', this.store.activeIndex == 2 ? 'text_2' : ''">{{ project.title }}</h5>
+        <h5 class="title" :class="this.store.activeIndex == 0 ? 'text_0' : '', this.store.activeIndex == 1 ? 'text_1' : '', this.store.activeIndex == 2 ? 'text_2' : ''">{{ project.title }}</h5>
         <div class="type">({{ project.type ? project.type.name : 'Tipo indefinito' }})</div>
-        <span class="pe-2" v-for="tech in project.technologies"> {{ tech.name }} </span>
-        <p class="card-text">{{ shortContent }}</p>
+        <span class="techs pe-2" :style="{color:  tech.color }" v-for="tech in project.technologies"> {{ tech.name }} </span>
+
+        <div v-show="viewBtn" class="btn-container">
+          <button class="btn" :class="this.store.activeIndex == 0 ? 'btn-outline-danger' : '', this.store.activeIndex == 1 ? 'btn-outline-primary' : '', this.store.activeIndex == 2 ? 'btn-outline-secondary' : ''">
+            <router-link class="router-link" :to="{name: 'projects.show', params: {slug: project.slug}}" >ESPLORA</router-link>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -64,31 +60,60 @@ export default {
 <style scoped lang="scss">
 
 .card{
-    width: calc(100% / 3 - 50px);
+  width: calc(100% / 3 - 50px);
+  
+  transition: all .2s ease-in-out;
+  
+  img{
+      height: 200px;
+  }
+  
+  .card-body{
+  
+    .title{
+      font-size: 1.6em;
+      font-family: 'Bruno Ace', cursive;
 
-    transition: all .2s ease-in-out;
-
-    img{
-        height: 200px;
+      margin-bottom: 0;
+    }
+  
+    .type{
+      padding-bottom: 26px;
+      
+      color: white;
+      font-size: 0.9em;
+      font-family: 'Bruno Ace', cursive;
     }
 
-    .card-body{
-
-      .card-title{
-        font-size: 1.4em;
-        font-family: 'Bruno Ace', cursive;
-      }
-
-      .type{
-        color: white;
-        font-size: 0.9em;
-        font-family: 'Bruno Ace', cursive;
-      }
+    .techs{
+      font-family: 'Bruno Ace', cursive;
     }
+  }
+  .btn-container{
+    position: relative;
 
-    &:hover{
-      transform: scale(1.2);
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100%;
+
+    .btn{
+      font-family: 'Bruno Ace', cursive;
     }
+  }
+  
+  &:hover{
+    transform: scale(1.2);
+
+    z-index: 3;
+  }
+
+  &:hover .btn-container{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
 }
+
 
 </style>

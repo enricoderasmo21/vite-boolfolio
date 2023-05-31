@@ -78,9 +78,9 @@ export default {
           <img :src="images[this.store.activeIndex]" alt="">
         </div>
         <div class="arrow-container">
-          <div @click="prevImage()"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="arrow" @click="prevImage()"><i class="fa-solid fa-chevron-left"></i></div>
           <div>Change theme</div>
-          <div @click="nextImage()"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="arrow" @click="nextImage()"><i class="fa-solid fa-chevron-right"></i></div>
         </div>
       </div>
     </div>
@@ -157,8 +157,15 @@ export default {
           .arrow-container{
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             margin-top: 8px;
+
+            .arrow{
+              font-size: 2em;
+
+              cursor: pointer;
+            }
           }
         }
       }

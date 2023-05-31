@@ -38,8 +38,7 @@ export default {
         this.projects = response.data.results;
         
       });
-    },
-      
+    }, 
   },
 }
 
